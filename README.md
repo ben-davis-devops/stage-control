@@ -1,2 +1,4 @@
 # stage-control
-Terraform, Ansible &amp; AWS: Deploy a Scalable Web App Stack for a Rally App
+EKS Platform with a Rally Theme
+
+Infrastructure as Code project using Terraform to provision AWS infrastructure.
