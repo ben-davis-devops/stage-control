@@ -1,5 +1,5 @@
 include "root" {
-  path = find_in_parent_folders()
+  path = find_in_parent_folders("root.hcl")
 }
 
 locals {
@@ -18,7 +18,7 @@ inputs = {
   name_prefix        = local.env.locals.name_prefix
   environment        = local.env.locals.environment
   cluster_name       = "${local.env.locals.name_prefix}-eks"
-  kubernetes_version = "1.30"
+  kubernetes_version = "1.35"
 
   private_subnet_ids = dependency.vpc.outputs.private_subnet_ids
 
