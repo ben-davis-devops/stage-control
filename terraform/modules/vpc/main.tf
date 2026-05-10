@@ -4,13 +4,13 @@ resource "aws_vpc" "this" {
   enable_dns_hostnames = true
 
   tags = merge(var.common_tags, {
-      Name        = "${var.names_prefix}-vpc"
+      Name        = "${var.name_prefix}-vpc"
       Environment = var.environment
   })
 }
 
 resource "aws_internet_gateway" "this" {
-  vpc_id = aws_vpc.this.index
+  vpc_id = aws_vpc.this.id
 
   tags = merge(var.common_tags, {
     Name        = "${var.name_prefix}-igw"
@@ -21,7 +21,7 @@ resource "aws_internet_gateway" "this" {
 resource "aws_subnet" "public" {
   count = length(var.public_subnet_cidrs)
 
-  vpc_id                  = aws.vpc.this.id
+  vpc_id                  = aws_vpc.this.id
   cidr_block              = var.public_subnet_cidrs[count.index]
   availability_zone       = var.availability_zones[count.index]
   map_public_ip_on_launch = true
