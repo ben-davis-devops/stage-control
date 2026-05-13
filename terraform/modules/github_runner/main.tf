@@ -28,6 +28,12 @@ resource "aws_iam_role_policy_attachment" "eks_access" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
 }
 
+# only for testing custom policy in future
+resource "aws_iam_role_policy_attachment" "runner_admin" {
+  role       = aws_iam_role.runner.name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}
+
 resource "aws_iam_instance_profile" "runner" {
   name = "${var.name_prefix}-runner-instance-profile"
   role = aws_iam_role.runner.name
